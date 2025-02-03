@@ -1,0 +1,25 @@
+function solution(cacheSize, cities) {
+    let totalTime = 0;
+    let cache = [];
+    
+    for (let city of cities) {
+        city = city.toLowerCase();
+        let index = cache.indexOf(city);
+        
+        if(index !== -1) {
+            totalTime += 1;
+            cache.splice(index , 1);
+            cache.push(city);
+        } else {
+            totalTime += 5;
+            if(cacheSize > 0) {
+                if(cache.length === cacheSize) {
+                    cache.shift();
+                }
+                cache.push(city);
+            }
+        }
+    }
+    
+    return totalTime;
+}
